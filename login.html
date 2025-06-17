@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSC435 Week 6: AI-Powered & Serverless Web Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Auth0.js CDN -->
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+  <header class="bg-blue-700 py-8">
+    <h1 class="text-3xl font-bold text-center text-white">
+      CSC435 Week 6: AI-Powered &amp; Serverless Web Application
+    </h1>
+  </header>
+  <main class="flex flex-1 items-center justify-center">
+    <div id="auth0-login-container" class="w-full max-w-md"></div>
+  </main>
+  <script>
+    // Initialize Auth0 Lock (Universal Login)
+    var webAuth = new auth0.WebAuth({
+      domain: 'YOUR_AUTH0_DOMAIN',
+      clientID: 'YOUR_AUTH0_CLIENT_ID',
+      redirectUri: window.location.origin,
+      responseType: 'token id_token',
+      scope: 'openid profile email'
+    });
+
+    // Show the Auth0 Universal Login page
+    webAuth.authorize();
+  </script>
+</body>
+</html>

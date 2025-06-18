@@ -1,3 +1,5 @@
+import { showCarRecommendationSpinner } from './ui.js';
+
 // Listener for sign in button
 export function attachSignInListener(signIn) {
   const signInBtn = document.getElementById('sign-in-btn');

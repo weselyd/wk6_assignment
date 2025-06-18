@@ -25,6 +25,7 @@ export function displayLoggedInUi(user) {
         />
         <button id="get-car-recommendations-btn" style="margin-top: 10px;">Get car recommendations</button>
       </div>
+      <div id="ai-car-recommendation"></div>
       <br><br><button id="log-out-btn">Log Out</button> 
     `;
     /*
@@ -55,14 +56,36 @@ export function displayLoggedInUi(user) {
 
 export function displayAiRecommendation(aiResponse) {
   let adviceElem = document.getElementById('ai-car-recommendation');
+  
+  if (adviceElem) { // Clear the spinner or any existing content before updating
+    adviceElem.innerHTML = '';
+  }
   let aiResponseMessage = JSON.parse(aiResponse);
   if (!adviceElem) {
     adviceElem = document.createElement('div');
     adviceElem.id = 'ai-car-recommendation';
-    adviceElem.textContent = aiResponseMessage.message || "No AI recommendation available.";
-    //adviceElem.className = 'mt-4 bg-blue-100/80 text-blue-900 rounded-md p-4 text-center shadow font-medium';
     const btn = document.getElementById('get-car-recommendations-btn');
     if (btn) btn.parentNode.insertBefore(adviceElem, btn.nextSibling);
   }
+  adviceElem.textContent = aiResponseMessage.message || "No AI recommendation available.";
   return adviceElem;
+}
+
+export function showCarRecommendationSpinner() {
+  const recommendationDiv = document.getElementById('ai-car-recommendation');
+  if (recommendationDiv) {
+    recommendationDiv.innerHTML = `
+      <div class="spin" style="margin: 20px auto; text-align: center;">
+        <div style="
+          display: inline-block;
+          width: 32px;
+          height: 32px;
+          border: 4px solid #ccc;
+          border-top: 4px solid #333;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        "></div>
+      </div>
+    `;
+  }
 }

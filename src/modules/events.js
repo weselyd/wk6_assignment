@@ -34,7 +34,28 @@ export function attachAiListener(aiApi) {
   if (aiApiBtn) {
     aiApiBtn.addEventListener('click', aiApi);
   }
-}
+} 
+export function attachCarQueryListener(carQuery) {
+  const button = document.getElementById('get-car-recommendations-btn');
+  if (button) {
+    button.addEventListener('click', carQuery);
+  }
+} 
+/*
+export const attachCarQueryListener = (handler) => {
+  document.getElementById('get-car-recommendations-btn').addEventListener('click', (event) => {
+    //event.preventDefault();
+
+    const carQuery = document.getElementById('car-query-input');
+    if (!carQuery ) return null;
+    let trimmedCarQuery = carQuery.textContent.trim();
+    trimmedCarQuery = trimmedCarQuery.replace(/[\/\\'"`]/g, '');  // Remove /, \, ", ', and ` from trimmedCarQuery to help prevent injection attacks
+
+    //const cleanDescription = description.replace(/["'()]/g, "");  // Remove quotes and parentheses for better prompt formatting
+    const prompt = `In two or fewer sentences, tell me what car I should buy based on this description: ${trimmedCarQuery}`;
+    handler(prompt);
+  });
+} */
 
 /*
 // Listener for sign up button

@@ -30,7 +30,7 @@ export function attachNetlifyListenerProtected (netlifyApiProtected) {
 }
 
 export function attachAiListener(aiApi) {
-  const aiApiBtn = document.getElementById('aiApi-btn');
+  const aiApiBtn = document.getElementById('callOpenAI-btn');
   if (aiApiBtn) {
     aiApiBtn.addEventListener('click', aiApi);
   }

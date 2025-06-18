@@ -27,6 +27,7 @@ export function displayLoggedInUi(user) {
       </div>
       <br><br><button id="log-out-btn">Log Out</button> 
     `;
+    /*
     attachCarQueryListener(async (prompt) => {  // Set up AI button to fetch advice based on weather data
       if (!prompt) return;
       const aiRecommendation = displayAiResponse();  // Create section for AI advice if it doesn't exist
@@ -39,7 +40,7 @@ export function displayLoggedInUi(user) {
         console.error('Error fetching AI advice:', error);
         adviceElem.textContent = "Could not get advice from OpenAI";
       }
-    });
+    }); */
     attachLogOutListener(logOut);
     attachNetlifyListener(callNetlifyApi);
     attachNetlifyListenerProtected(callNetlifyApiProtected);
@@ -52,11 +53,12 @@ export function displayLoggedInUi(user) {
   }
 }
 
-export function displayAiRecommendation() {
+export function displayAiRecommendation(aiResponse) {
   let adviceElem = document.getElementById('ai-car-recommendation');
   if (!adviceElem) {
     adviceElem = document.createElement('div');
     adviceElem.id = 'ai-car-recommendation';
+    adviceElem.textContent = aiResponse || "No AI recommendation available.";
     //adviceElem.className = 'mt-4 bg-blue-100/80 text-blue-900 rounded-md p-4 text-center shadow font-medium';
     const btn = document.getElementById('get-car-recommendations-btn');
     if (btn) btn.parentNode.insertBefore(adviceElem, btn.nextSibling);

@@ -91,7 +91,7 @@ export function callOpenAiProtected() {
     });
   });
 }
-export function callCarQueryProtected() {
+export async function callCarQueryProtected() {
   let trimmedCarQuery = document.getElementById('car-query-input').value.trim();
   trimmedCarQuery = trimmedCarQuery.replace(/[\/\\'"`]/g, '');  // Remove /, \, ", ', and ` from trimmedCarQuery to help prevent injection attacks
   const fullPrompt = `In two or fewer sentences, tell me what car I should buy based on this description: ${trimmedCarQuery}`;
@@ -111,8 +111,11 @@ export function callCarQueryProtected() {
       return response.json();
     })
     .then((data) => {
-      console.log('Netlify API response:', data);
-      alert('Netlify API response: ' + JSON.stringify(data));
+      //console.log('Netlify API response:', data);
+      //alert('Netlify API response: ' + JSON.stringify(data));
+      const aiResponse = JSON.stringify(data);
+      console.log('AI Response:', aiResponse);
+      displayAiRecommendation(aiResponse);  // Call disiplayAIRecommendation and pass in the AI response
     })
     .catch((error) => {
       console.error('Netlify API error:', error);

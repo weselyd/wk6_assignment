@@ -1,3 +1,5 @@
+import { displayLoggedInUi } from './ui.js';
+
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCrG4DzOojRjZBSXZffJwQIBcq5SZZHEJQ",  // FIREBASE_APIKEY
@@ -18,6 +20,28 @@ const userInfo = document.getElementById('user-info');
 const userEmail = document.getElementById('user-email');
 const authForm = document.getElementById('auth-form');
 const errorMessage = document.getElementById('error-message');
+
+// Monitor Auth State
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    authForm.style.display = 'none';
+    userInfo.style.display = 'block';
+    //userEmail.textContent = user.email;
+    displayLoggedInUi(user);
+    /*
+    // Get token when user signs in
+    getIdToken().then((idToken) => {
+      console.log('User is signed in with token:', idToken);
+    }); 
+    */
+  } else {
+    authForm.style.display = 'block';
+    userInfo.style.display = 'none';
+    errorMessage.textContent = '';
+    displayLoggedInUi(null);
+  }
+});
+
 
 /*
 // Sign Up
@@ -54,16 +78,21 @@ export function logOut() {
   });
 }
 
-// Monitor Auth State
-auth.onAuthStateChanged((user) => {
+// Get Firebase ID Token
+export function getIdToken() {
+  const user = firebase.auth().currentUser;
   if (user) {
-    authForm.style.display = 'none';
-    userInfo.style.display = 'block';
-    userEmail.textContent = user.email;
+    return user.getIdToken(/* forceRefresh */ false)
+      .then((idToken) => {
+        console.log('Firebase ID Token:', idToken);
+        return idToken;
+      })
+      .catch((error) => {
+        console.error('Error getting ID Token:', error);
+        throw error;
+      });
   } else {
-    authForm.style.display = 'block';
-    userInfo.style.display = 'none';
-    errorMessage.textContent = '';
+    console.log('No user is signed in');
+    return Promise.reject('No user signed in');
   }
-});
-
+}

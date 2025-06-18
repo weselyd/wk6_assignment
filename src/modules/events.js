@@ -1,14 +1,41 @@
 // Listener for sign in button
 export function attachSignInListener(signIn) {
-  window.addEventListener('DOMContentLoaded', function() {
-    const signInBtn = document.getElementById('sign-in-btn');
-    if (signInBtn) {
-      signInBtn.addEventListener('click', signIn);
-    } else {
-      console.error('Sign In button with id "sign-in-btn" not found.');
-    }
-  });
+  const signInBtn = document.getElementById('sign-in-btn');
+  if (signInBtn) {
+    signInBtn.addEventListener('click', signIn);
+  } 
 }
+
+
+// Listener for log out button
+export function attachLogOutListener(logOut) {
+  const logOutBtn = document.getElementById('log-out-btn');
+  if (logOutBtn) {
+    logOutBtn.addEventListener('click', logOut);
+  }
+}
+
+export function attachNetlifyListener(netlifyApi) {
+  const netflifyApiBtn = document.getElementById('netflifyApi-btn');
+  if (netflifyApiBtn) {
+    netflifyApiBtn.addEventListener('click', netlifyApi);
+  }
+}
+
+export function attachNetlifyListenerProtected (netlifyApiProtected) {
+  const netflifyApiProtectedBtn = document.getElementById('netflifyApProtected-btn');
+  if (netflifyApiProtectedBtn) {
+    netflifyApiProtectedBtn.addEventListener('click', netlifyApiProtected);
+  }
+}
+
+export function attachAiListener(aiApi) {
+  const aiApiBtn = document.getElementById('aiApi-btn');
+  if (aiApiBtn) {
+    aiApiBtn.addEventListener('click', aiApi);
+  }
+}
+
 /*
 // Listener for sign up button
 export function attachSignUpListener(signUp) {
@@ -32,12 +59,3 @@ export function attachSignUpListener(signUp) {
     }
   });
 } */
-// Listener for log out button
-export function attachLogOutListener(logOut) {
-  window.addEventListener('DOMContentLoaded', function() {
-    const logOutBtn = document.getElementById('log-out-btn');
-    if (logOutBtn) {
-      logOutBtn.addEventListener('click', logOut);
-    }
-  });
-}

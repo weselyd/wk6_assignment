@@ -55,10 +55,11 @@ export function displayLoggedInUi(user) {
 
 export function displayAiRecommendation(aiResponse) {
   let adviceElem = document.getElementById('ai-car-recommendation');
+  let aiResponseMessage = JSON.parse(aiResponse);
   if (!adviceElem) {
     adviceElem = document.createElement('div');
     adviceElem.id = 'ai-car-recommendation';
-    adviceElem.textContent = aiResponse || "No AI recommendation available.";
+    adviceElem.textContent = aiResponseMessage.message || "No AI recommendation available.";
     //adviceElem.className = 'mt-4 bg-blue-100/80 text-blue-900 rounded-md p-4 text-center shadow font-medium';
     const btn = document.getElementById('get-car-recommendations-btn');
     if (btn) btn.parentNode.insertBefore(adviceElem, btn.nextSibling);

@@ -1,4 +1,5 @@
 import { getIdToken } from './auth.js';
+import { displayAiRecommendation } from './ui.js';
 
 // Call Netlify API
 export function callNetlifyApi() {

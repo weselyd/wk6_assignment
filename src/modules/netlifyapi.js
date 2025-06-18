@@ -96,7 +96,7 @@ export function callCarQueryProtected() {
   trimmedCarQuery = trimmedCarQuery.replace(/[\/\\'"`]/g, '');  // Remove /, \, ", ', and ` from trimmedCarQuery to help prevent injection attacks
   const fullPrompt = `In two or fewer sentences, tell me what car I should buy based on this description: ${trimmedCarQuery}`;
   getIdToken().then((idToken) => {
-  fetch('https://dulcet-croissant-1ef096.netlify.app/.netlify/functions/carquery', {
+  fetch('https://dulcet-croissant-1ef096.netlify.app/.netlify/functions/caradvice', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${idToken}`,

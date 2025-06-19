@@ -1,7 +1,9 @@
 # wk6_assignment
 This is a Car Recommender application.  It utilizes Firebase username/password type authentication, GitHub Pages for static page hosting, Netlify for serverless backend processing, and OpenAI to generate responses to user requests for car purchasing advice.
 
-Performance standards such as async/await for the API call, async loading of scipts, 
+Performance standards such as async/await for the API call, defer loading of scipts, and compression is supported by default supported by backend, serverless provider (Netlify).
+
+For security, user authentication is handled by Google Firebase and uses bearer tokens for user login and tokens are verified when calling backend services.  To help prevent injection attacks, user input is stripped of certain characters including tick marks, quotes, front and backslashes.  For additional security CORS policy is used and scoped to just the GitHub Pages location.
 
 
 To setup this application in a similar manner:

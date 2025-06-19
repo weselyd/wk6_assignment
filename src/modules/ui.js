@@ -1,57 +1,43 @@
-import { attachLogOutListener, attachSignInListener, attachNetlifyListener,attachNetlifyListenerProtected, attachAiListener, attachCarQueryListener } from "./events.js";
-import { logOut, signIn } from "./auth.js";
-import { callNetlifyApi, callNetlifyApiProtected, callOpenAiProtected, callCarQueryProtected } from "./netlifyapi.js";
+import { attachLogOutListener, attachCarQueryListener } from "./events.js";
+import { logOut } from "./auth.js";
+import { callCarQueryProtected } from "./netlifyapi.js";
 
 // Example: Dynamically update user-info after login
 export function displayLoggedInUi(user) {
   const userInfoDiv = document.getElementById('user-info');
   if (user) {
     userInfoDiv.innerHTML = `
-      <p>Welcome, ${user.displayName || user.email}!!</p>
-      <button id="netflifyApi-btn">Call Netlify API</button>
-      <div>
-        <button id="netflifyApProtected-btn" style="width: 100%;">Call Netlify API Protected</button>
-      </div>
-      <div>
-        <button id="callOpenAI-btn" style="width: 100%;">Call Open API Protected</button>
-      </div>
-      <div>
-        <br><br>
+      <div class="bg-gray-700 rounded-xl p-6 flex flex-col items-center gap-4 shadow mb-4 w-full">
+        <p class="text-blue-200 text-lg font-semibold text-center">
+          Welcome, ${user.displayName || user.email}!
+        </p>
+        <p class="text-gray-200 text-center">
+          This is your personal vehicle recommender - just tell us what you like and it will tell you what car makes sense for you!
+        </p>
         <input 
           type="text" 
           id="car-query-input" 
-          placeholder="Tell me what car you are looking for" 
-          style="width: 100%; padding: 8px; margin-top: 10px;"
+          placeholder="Describe your ideal car here" 
+          class="w-full rounded-lg border border-gray-600 bg-gray-900 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition mt-2"
         />
-        <button id="get-car-recommendations-btn" style="margin-top: 10px;">Get car recommendations</button>
-      </div>
-      <div id="ai-car-recommendation"></div>
-      <br><br><button id="log-out-btn">Log Out</button> 
+        <button 
+          id="get-car-recommendations-btn" 
+          class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg shadow transition mt-2"
+        >
+          Get car recommendations
+        </button>
+        </div>
+        <div id="ai-car-recommendation" class="w-full mt-4"></div>
+        <button 
+          id="log-out-btn" 
+          class="w-full bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 rounded-lg shadow transition mt-6"
+        >
+          Log Out
+        </button>
     `;
-    /*
-    attachCarQueryListener(async (prompt) => {  // Set up AI button to fetch advice based on weather data
-      if (!prompt) return;
-      const aiRecommendation = displayAiResponse();  // Create section for AI advice if it doesn't exist
-      //showSunSpinner('ai-weather-advice'); // Show rotating sun while loading AI response
-
-      try {
-        const aiReponse = await callOpenAI(prompt);  // Call OpenAI API with the prompt
-        adviceElem.textContent = aiReponse.output?.[0]?.content?.[0]?.text?.trim() || "No advice received.";
-      } catch (error) {  // Handle any errors from the OpenAI API call, log to console, and display a user-friendly message
-        console.error('Error fetching AI advice:', error);
-        adviceElem.textContent = "Could not get advice from OpenAI";
-      }
-    }); */
     attachLogOutListener(logOut);
-    attachNetlifyListener(callNetlifyApi);
-    attachNetlifyListenerProtected(callNetlifyApiProtected);
-    attachAiListener(callOpenAiProtected);
     attachCarQueryListener(callCarQueryProtected);
-    //console.log('User is logged in and displayLoggedInUi called');
-  } else {
-    userInfoDiv.innerHTML = 'test';
-    //console.log('User is logged out and displayLoggedInUi called');
-  }
+  } 
 }
 
 export function displayAiRecommendation(aiResponse) {
@@ -67,25 +53,37 @@ export function displayAiRecommendation(aiResponse) {
     const btn = document.getElementById('get-car-recommendations-btn');
     if (btn) btn.parentNode.insertBefore(adviceElem, btn.nextSibling);
   }
-  adviceElem.textContent = aiResponseMessage.message || "No AI recommendation available.";
+  adviceElem.innerHTML = `
+    <div class="bg-gray-800 rounded-xl p-6 shadow w-full mt-4 text-gray-100">
+      ${aiResponseMessage.message || "No AI recommendation available."}
+    </div>
+  `;
   return adviceElem;
 }
 
 export function showCarRecommendationSpinner() {
-  const recommendationDiv = document.getElementById('ai-car-recommendation');
-  if (recommendationDiv) {
-    recommendationDiv.innerHTML = `
-      <div class="spin" style="margin: 20px auto; text-align: center;">
-        <div style="
-          display: inline-block;
-          width: 32px;
-          height: 32px;
-          border: 4px solid #ccc;
-          border-top: 4px solid #333;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        "></div>
-      </div>
-    `;
-  }
+  const aiCarRecommendationDiv = document.getElementById('ai-car-recommendation');
+  aiCarRecommendationDiv.innerHTML = `
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg);}
+        100% { transform: rotate(360deg);}
+      }
+    </style>
+    <div style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+    ">
+      <div style="
+        border: 4px solid #3b82f6;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        animation: spin 1s linear infinite;
+      "></div>
+    </div>
+  `;
 }

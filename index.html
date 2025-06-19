@@ -4,22 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple SPA with Firebase Auth</title>
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" async></script>  <!-- // Added async so it doesn't block rendering -->
 </head>
-<body>
-  <div id="auth-container">
-    <h1>Simple SPA</h1>
-    <div id="user-info">
-    <!--  <p>Welcome, <span id="user-email"></span>!</p>
-      <button id="netflifyApi-btn">Call Netlify API</button>
-      <button id="log-out-btn">Log Out</button> -->
+<body class="bg-gradient-to-br from-gray-900 to-blue-900 min-h-screen flex items-center justify-center font-sans" style="font-family: 'Montserrat', sans-serif;">
+  <div class="absolute top-10 w-full flex justify-center">
+    <h2 class="text-2xl md:text-3xl font-bold text-blue-200 drop-shadow mb-8 text-center">
+      Week 6: AI-Powered &amp; Serverless Web Application
+    </h2>
+  </div>
+  <div id="auth-container" class="bg-gray-800 rounded-2xl shadow-2xl p-8 w-[36rem] max-w-full flex flex-col items-center mt-24">
+    <h1 class="text-3xl font-bold text-blue-300 mb-6">Car Recommender</h1>
+    <div id="user-info" class="w-full mb-4">
     </div>
-    <div id="auth-form">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
+    <div id="auth-form" class="w-full flex flex-col gap-4">
+      <input type="email" id="email" placeholder="Email" required class="rounded-lg border border-gray-700 bg-gray-900 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition w-full" >
+      <input type="password" id="password" placeholder="Password" required class="rounded-lg border border-gray-700 bg-gray-900 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition w-full" >
       <!-- <button id="sign-up-btn">Sign Up</button> -->
-      <button id="sign-in-btn">Sign In</button>
-      <p id="error-message" style="color: red;"></p>
+      <button id="sign-in-btn" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg shadow transition w-full mx-auto">Sign In</button>
+      <p id="error-message" class="text-red-400 text-sm min-h-[1.5rem]"></p>
     </div>
   </div>
 

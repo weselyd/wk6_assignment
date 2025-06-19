@@ -26,14 +26,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     authForm.style.display = 'none';
     userInfo.style.display = 'block';
-    //userEmail.textContent = user.email;
     displayLoggedInUi(user);
-    /*
-    // Get token when user signs in
-    getIdToken().then((idToken) => {
-      console.log('User is signed in with token:', idToken);
-    }); 
-    */
   } else {
     authForm.style.display = 'block';
     userInfo.style.display = 'none';
@@ -42,22 +35,7 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-
-/*
-// Sign Up
-function signUp() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  auth.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      console.log('Signed up:', userCredential.user);
-    })
-    .catch((error) => {
-      errorMessage.textContent = error.message;
-    });
-} */
-
-// Sign In
+// Sign In with Firebase
 export function signIn() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -70,11 +48,10 @@ export function signIn() {
     });
 }
 
-// Sign Out
+// Sign Out from Firebase
 export function logOut() {
   auth.signOut().then(() => {
     console.log('Signed out');
-    alert("Logged out!");
   });
 }
 

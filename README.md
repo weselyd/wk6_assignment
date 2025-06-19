@@ -1,5 +1,7 @@
 # wk6_assignment
-This is a Car Recommender application.  It utilized Firebase username/password type authentication, GitHub Pages for static page hosting, Netlify for serverless backend processing, and OpenAI to generate resposnes to user requests for car purchasing advice.
+This is a Car Recommender application.  It utilizes Firebase username/password type authentication, GitHub Pages for static page hosting, Netlify for serverless backend processing, and OpenAI to generate responses to user requests for car purchasing advice.
+
+Performance standards such as async/await for the API call, async loading of scipts, 
 
 
 To setup this application in a similar manner:
@@ -18,3 +20,4 @@ Future improvements for this should be:
 * Save previous recommendations in browser or database
 * Add "Sign in with Google" capability
 * Further integration with user details (sourced from Firebase) in UI
+* Bundle Tailwind CSS classes for cleaner, more readible code

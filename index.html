@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Car Recommender</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" async></script>  <!-- // Added async so it doesn't block rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>  <!-- // Added async so it doesn't block rendering -->
 </head>
 <body class="bg-gradient-to-br from-gray-900 to-blue-900 min-h-screen flex items-center justify-center font-sans" style="font-family: 'Montserrat', sans-serif;">
   <div class="absolute top-10 w-full flex justify-center">
@@ -27,8 +27,8 @@
   </div>
 
   <!-- Firebase Legacy SDK (v8) -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script type="module" src="src/app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js" defer></script>
+  <script type="module" src="src/app.js" defer></script>
 </body>
 </html>

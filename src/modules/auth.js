@@ -21,7 +21,7 @@ const userEmail = document.getElementById('user-email');
 const authForm = document.getElementById('auth-form');
 const errorMessage = document.getElementById('error-message');
 
-// Monitor Auth State
+// Monitor auth state and update UI as needed
 auth.onAuthStateChanged((user) => {
   if (user) {
     authForm.style.display = 'none';

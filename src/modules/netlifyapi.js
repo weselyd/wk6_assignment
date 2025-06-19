@@ -1,7 +1,7 @@
 import { getIdToken } from './auth.js';
 import { displayAiRecommendation, showCarRecommendationSpinner } from './ui.js';
 
-export async function callCarQueryProtected() {
+export async function callCarQueryProtected() {  // Call the Netlify API to get recommendations based on user input
   let trimmedCarQuery = document.getElementById('car-query-input').value.trim();
   trimmedCarQuery = trimmedCarQuery.replace(/[\/\\'"`]/g, '');  // Remove /, \, ", ', and ` from trimmedCarQuery to help prevent injection attacks
   const fullPrompt = `You are a highly knowledgeable automotive expert who specializes in helping drivers select the perfect vehicle based on their needs.  In two or fewer sentences, tell me what vehicle I should buy based on this description: ${trimmedCarQuery}`;

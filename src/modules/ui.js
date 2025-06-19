@@ -2,7 +2,7 @@ import { attachLogOutListener, attachCarQueryListener } from "./events.js";
 import { logOut } from "./auth.js";
 import { callCarQueryProtected } from "./netlifyapi.js";
 
-// Example: Dynamically update user-info after login
+// Dynamically update UI after login
 export function displayLoggedInUi(user) {
   const userInfoDiv = document.getElementById('user-info');
   if (user) {
@@ -40,20 +40,21 @@ export function displayLoggedInUi(user) {
   } 
 }
 
-export function displayAiRecommendation(aiResponse) {
+export function displayAiRecommendation(aiResponse) {  // Display AI recommendation in the UI
   let adviceElem = document.getElementById('ai-car-recommendation');
   
   if (adviceElem) { // Clear the spinner or any existing content before updating
     adviceElem.innerHTML = '';
   }
   let aiResponseMessage = JSON.parse(aiResponse);
-  if (!adviceElem) {
+  if (!adviceElem) {  // If the element doesn't exist, create it
     adviceElem = document.createElement('div');
     adviceElem.id = 'ai-car-recommendation';
     const btn = document.getElementById('get-car-recommendations-btn');
     if (btn) btn.parentNode.insertBefore(adviceElem, btn.nextSibling);
   }
-  adviceElem.innerHTML = `
+  // Set the inner HTML of the advice element with the AI response
+  adviceElem.innerHTML = `  
     <div class="bg-gray-800 rounded-xl p-6 shadow w-full mt-4 text-gray-100">
       ${aiResponseMessage.message || "No AI recommendation available."}
     </div>
@@ -61,7 +62,7 @@ export function displayAiRecommendation(aiResponse) {
   return adviceElem;
 }
 
-export function showCarRecommendationSpinner() {
+export function showCarRecommendationSpinner() { // Show a spinner while waiting for AI response
   const aiCarRecommendationDiv = document.getElementById('ai-car-recommendation');
   aiCarRecommendationDiv.innerHTML = `
     <style>

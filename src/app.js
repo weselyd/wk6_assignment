@@ -4,6 +4,5 @@ import { signIn } from './modules/auth.js';
 document.addEventListener('DOMContentLoaded', () => {
     attachSignInListener(signIn);
 
-
 })
 
